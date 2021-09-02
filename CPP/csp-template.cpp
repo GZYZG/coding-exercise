@@ -23,7 +23,7 @@ public:
 class OutputData{
 public: 
     // 输出数据的字段
-    
+
     // 输出数据
     void toConsole(){
         std::cout << "You are writting result to console ... \n";
@@ -40,6 +40,7 @@ public:
         this->output = out;
     }
 
+    // 根据输入数据处理，保存至输出 
     void process(){
 
     }
