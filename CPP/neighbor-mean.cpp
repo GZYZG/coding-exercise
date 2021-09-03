@@ -1,7 +1,43 @@
 #include <iostream>
 using namespace std;
 
+
+
 int main(){
+    int n, L, r, t;
+    cin >> n >> L >> r >> t;
+    int pixels[n+1][n+1] = {0};
+    int tmp = 0;
+
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= n; j++){
+            cin >> tmp;
+            pixels[i][j] = tmp + pixels[i][j-1] + pixels[i-1][j] - pixels[i-1][j-1];
+        }
+    }
+
+    int left = 0, right = 0, top = 0, bottom = 0;
+    int sum = 0, ret = 0;
+
+    for(int i = 1; i <= n; i++){
+        top = i-r > 0? i-r: 1;
+        bottom = i+r <= n? i+r: n;
+        for(int j = 1; j <= n; j++){
+            left = j-r > 0? j-r: 1;
+            right = j+r <= n? j+r: n;
+            sum = pixels[bottom][right] - pixels[bottom][left] - pixels[top][right] + pixels[top][left];
+
+            if(sum <= (bottom - top) * (right - left) * t){
+                ret++;
+            }
+        }
+    }
+
+    cout << ret;
+    return 0;
+}
+
+int _main(){
     int n, L, r, t;
     cin >> n >> L >> r >> t;
     int pixels[n][n];
